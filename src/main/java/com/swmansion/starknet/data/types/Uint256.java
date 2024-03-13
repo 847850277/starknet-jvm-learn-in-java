@@ -77,17 +77,9 @@ public class Uint256 extends NumAsHexBase implements ConvertibleToCalldata {
         Intrinsics.checkNotNullParameter(value, "value");
         this.value = value;
         if (this.getValue().compareTo(BigInteger.ZERO) < 0) {
-            try {
-                throw (Throwable)(new IllegalArgumentException("Default Uint256 constructor does not accept negative numbers, [" + this.getValue() + "] given."));
-            } catch (Throwable e) {
-                throw new RuntimeException(e);
-            }
+                throw new IllegalArgumentException("Default Uint256 constructor does not accept negative numbers, [" + this.getValue() + "] given.");
         } else if (this.getValue().compareTo(MAX) > 0) {
-            try {
-                throw (Throwable)(new IllegalArgumentException("Default Uint256 constructor does not accept numbers higher than 2^256-1, [" + this.getValue() + "] given."));
-            } catch (Throwable e) {
-                throw new RuntimeException(e);
-            }
+                throw new IllegalArgumentException("Default Uint256 constructor does not accept numbers higher than 2^256-1, [" + this.getValue() + "] given.");
         }
     }
 

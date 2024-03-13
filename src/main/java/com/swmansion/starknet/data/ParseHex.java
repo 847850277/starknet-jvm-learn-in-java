@@ -19,11 +19,7 @@ public final class ParseHex {
     public static final BigInteger parseHex(String value){
         Intrinsics.checkNotNullParameter(value, "value");
         if (!StringsKt.startsWith(value, "0x", false)) {
-            try {
-                throw (Throwable)(new IllegalArgumentException("Hex must start with 0x"));
-            } catch (Throwable e) {
-                throw new RuntimeException(e);
-            }
+            throw new IllegalArgumentException("Hex must start with 0x");
         } else {
             return new BigInteger(StringsKt.removePrefix(value, (CharSequence)"0x"), 16);
         }

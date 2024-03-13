@@ -91,17 +91,9 @@ public final class Felt extends NumAsHexBase implements ConvertibleToCalldata {
         Intrinsics.checkNotNullParameter(value, "value");
         this.value = value;
         if (this.getValue().compareTo(BigInteger.ZERO) < 0) {
-            try {
-                throw (Throwable)(new IllegalArgumentException("Default Felt constructor does not accept negative numbers, [" + this.getValue() + "] given."));
-            } catch (Throwable e) {
-                throw new RuntimeException(e);
-            }
+            throw new IllegalArgumentException("Default Felt constructor does not accept negative numbers, [" + this.getValue() + "] given.");
         } else if (this.getValue().compareTo(PRIME) >= 0) {
-            try {
-                throw (Throwable)(new IllegalArgumentException("Default Felt constructor accepts values smaller than Felt.PRIME, [" + this.getValue() + "] given."));
-            } catch (Throwable e) {
-                throw new RuntimeException(e);
-            }
+            throw new IllegalArgumentException("Default Felt constructor accepts values smaller than Felt.PRIME, [" + this.getValue() + "] given.");
         }
     }
 
