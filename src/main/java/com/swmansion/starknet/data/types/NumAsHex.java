@@ -5,14 +5,13 @@ import com.swmansion.starknet.data.ParseHex;
 //import com.swmansion.starknet.data.serializers.NumAsHexSerializer;
 import java.math.BigInteger;
 
-import com.swmansion.starknet.data.extensions.ToHexKt;
+import com.swmansion.starknet.extensions.ToHexKt;
 import kotlin.Metadata;
 import kotlin.jvm.JvmField;
 import kotlin.jvm.JvmStatic;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.jvm.internal.Intrinsics;
 import kotlinx.serialization.KSerializer;
-import kotlinx.serialization.Serializable;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

@@ -10,10 +10,7 @@ import kotlin.jvm.internal.markers.KMutableList;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 
 @Metadata(
@@ -34,8 +31,8 @@ public class FeltArray implements ConvertibleToCalldata, List, KMutableList {
 
     public FeltArray(@NotNull List list) {
         super();
-        Intrinsics.checkNotNullParameter(list, "list");
-        this.list = list;
+        //Intrinsics.checkNotNullParameter(list, "list");
+        this.list = new ArrayList(list);
     }
 
     public FeltArray(@NotNull Felt... elements) {
@@ -59,8 +56,9 @@ public class FeltArray implements ConvertibleToCalldata, List, KMutableList {
         return this.getSize();
     }
 
+
     public boolean add(@NotNull Felt element) {
-        Intrinsics.checkNotNullParameter(element, "element");
+        //Intrinsics.checkNotNullParameter(element, "element");
         return this.list.add(element);
     }
 
@@ -71,7 +69,7 @@ public class FeltArray implements ConvertibleToCalldata, List, KMutableList {
     }
 
     public void add(int index, @NotNull Felt element) {
-        Intrinsics.checkNotNullParameter(element, "element");
+        //Intrinsics.checkNotNullParameter(element, "element");
         this.list.add(index, element);
     }
 
@@ -82,12 +80,12 @@ public class FeltArray implements ConvertibleToCalldata, List, KMutableList {
     }
 
     public boolean addAll(int index, @NotNull Collection elements) {
-        Intrinsics.checkNotNullParameter(elements, "elements");
+        //Intrinsics.checkNotNullParameter(elements, "elements");
         return this.list.addAll(index, elements);
     }
 
     public boolean addAll(@NotNull Collection elements) {
-        Intrinsics.checkNotNullParameter(elements, "elements");
+        //Intrinsics.checkNotNullParameter(elements, "elements");
         return this.list.addAll(elements);
     }
 
@@ -96,7 +94,7 @@ public class FeltArray implements ConvertibleToCalldata, List, KMutableList {
     }
 
     public boolean contains(@NotNull Felt element) {
-        Intrinsics.checkNotNullParameter(element, "element");
+        //Intrinsics.checkNotNullParameter(element, "element");
         return this.list.contains(element);
     }
 
@@ -106,7 +104,7 @@ public class FeltArray implements ConvertibleToCalldata, List, KMutableList {
     }
 
     public boolean containsAll(@NotNull Collection elements) {
-        Intrinsics.checkNotNullParameter(elements, "elements");
+        //Intrinsics.checkNotNullParameter(elements, "elements");
         return this.list.containsAll(elements);
     }
 
@@ -124,7 +122,7 @@ public class FeltArray implements ConvertibleToCalldata, List, KMutableList {
     }
 
     public int indexOf(@NotNull Felt element) {
-        Intrinsics.checkNotNullParameter(element, "element");
+        //Intrinsics.checkNotNullParameter(element, "element");
         return this.list.indexOf(element);
     }
 
@@ -143,7 +141,7 @@ public class FeltArray implements ConvertibleToCalldata, List, KMutableList {
     }
 
     public int lastIndexOf(@NotNull Felt element) {
-        Intrinsics.checkNotNullParameter(element, "element");
+        //Intrinsics.checkNotNullParameter(element, "element");
         return this.list.lastIndexOf(element);
     }
 
@@ -163,7 +161,7 @@ public class FeltArray implements ConvertibleToCalldata, List, KMutableList {
     }
 
     public boolean remove(@NotNull Felt element) {
-        Intrinsics.checkNotNullParameter(element, "element");
+        //Intrinsics.checkNotNullParameter(element, "element");
         return this.list.remove(element);
     }
 
@@ -173,14 +171,14 @@ public class FeltArray implements ConvertibleToCalldata, List, KMutableList {
     }
 
     public boolean removeAll(@NotNull Collection elements) {
-        Intrinsics.checkNotNullParameter(elements, "elements");
+        //Intrinsics.checkNotNullParameter(elements, "elements");
         return this.list.removeAll(elements);
     }
 
     @NotNull
     public Felt removeAt(int index) {
         Object var10000 = this.list.remove(index);
-        Intrinsics.checkNotNullExpressionValue(var10000, "removeAt(...)");
+        //Intrinsics.checkNotNullExpressionValue(var10000, "removeAt(...)");
         return (Felt)var10000;
     }
 
@@ -196,15 +194,15 @@ public class FeltArray implements ConvertibleToCalldata, List, KMutableList {
 //    }
 
     public boolean retainAll(@NotNull Collection elements) {
-        Intrinsics.checkNotNullParameter(elements, "elements");
+        //Intrinsics.checkNotNullParameter(elements, "elements");
         return this.list.retainAll(elements);
     }
 
     @NotNull
     public Felt set(int index, @NotNull Felt element) {
-        Intrinsics.checkNotNullParameter(element, "element");
+        //Intrinsics.checkNotNullParameter(element, "element");
         Object var10000 = this.list.set(index, element);
-        Intrinsics.checkNotNullExpressionValue(var10000, "set(...)");
+        //Intrinsics.checkNotNullExpressionValue(var10000, "set(...)");
         return (Felt)var10000;
     }
 
@@ -225,7 +223,7 @@ public class FeltArray implements ConvertibleToCalldata, List, KMutableList {
 
     @NotNull
     public final FeltArray copy(@NotNull List list) {
-        Intrinsics.checkNotNullParameter(list, "list");
+        //Intrinsics.checkNotNullParameter(list, "list");
         return new FeltArray(list);
     }
 

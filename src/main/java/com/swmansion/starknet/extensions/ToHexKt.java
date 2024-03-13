@@ -1,4 +1,4 @@
-package com.swmansion.starknet.data.extensions;
+package com.swmansion.starknet.extensions;
 
 import java.math.BigInteger;
 import kotlin.Metadata;

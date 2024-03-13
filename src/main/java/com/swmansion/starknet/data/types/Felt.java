@@ -1,14 +1,12 @@
 package com.swmansion.starknet.data.types;
 
 import com.swmansion.starknet.data.ParseHex;
-import com.swmansion.starknet.data.extensions.ToHexKt;
+import com.swmansion.starknet.extensions.ToHexKt;
 import com.swmansion.starknet.data.types.conversions.ConvertibleToCalldata;
 import kotlin.Metadata;
-import kotlin.collections.ArraysKt;
 import kotlin.collections.CollectionsKt;
 import kotlin.jvm.JvmField;
 import kotlin.jvm.JvmStatic;
-import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.jvm.internal.Intrinsics;
 import kotlin.text.StringsKt;
@@ -47,6 +45,7 @@ public final class Felt extends NumAsHexBase implements ConvertibleToCalldata {
     public static final Companion Companion = new Companion((DefaultConstructorMarker)null);
 
     @NotNull
+    @Override
     public List toCalldata() {
         return CollectionsKt.listOf(this);
     }
@@ -77,8 +76,14 @@ public final class Felt extends NumAsHexBase implements ConvertibleToCalldata {
         }
 
         Intrinsics.checkNotNullExpressionValue(hexString, "hexString");
-        //return CollectionsKt.joinToString$default((Iterable)StringsKt.chunked((CharSequence)hexString, 2), (CharSequence)"", (CharSequence)null, (CharSequence)null, 0, (CharSequence)null, (Function1)null.INSTANCE, 30, (Object)null);
-        return null;
+
+        StringBuilder decoded = new StringBuilder();
+        for (int i = 0; i < hexString.length(); i += 2) {
+            String hex = hexString.substring(i, i + 2);
+            int intValue = Integer.parseInt(hex, 16);
+            decoded.append((char) intValue);
+        }
+        return decoded.toString();
     }
 
     @NotNull
@@ -98,14 +103,10 @@ public final class Felt extends NumAsHexBase implements ConvertibleToCalldata {
     }
 
     public Felt(long value) {
-        //BigInteger var10001 = ;
-        //Intrinsics.checkNotNullExpressionValue(var10001, "BigInteger.valueOf(value)");
         this(BigInteger.valueOf(value));
     }
 //
     public Felt(int value) {
-        //BigInteger var10001 = ;
-        //Intrinsics.checkNotNullExpressionValue(var10001, "BigInteger.valueOf(value.toLong())");
         this(BigInteger.valueOf((long)value));
     }
 
@@ -197,23 +198,19 @@ public final class Felt extends NumAsHexBase implements ConvertibleToCalldata {
         public final Felt fromShortString(@NotNull String value) {
             Intrinsics.checkNotNullParameter(value, "value");
             if (value.length() > 31) {
-                try {
-                    throw (Throwable)(new IllegalArgumentException("Short string cannot be longer than 31 characters."));
-                } catch (Throwable e) {
-                    throw new RuntimeException(e);
-                }
+                    throw (new IllegalArgumentException("Short string cannot be longer than 31 characters."));
             } else if (!((Companion)this).isAscii(value)) {
-                try {
-                    throw (Throwable)(new IllegalArgumentException("String to be encoded must be an ascii string."));
-                } catch (Throwable e) {
-                    throw new RuntimeException(e);
-                }
+                    throw (new IllegalArgumentException("String to be encoded must be an ascii string."));
             } else {
-                char[] var10000 = value.toCharArray();
-                Intrinsics.checkNotNullExpressionValue(var10000, "toCharArray(...)");
-                //String encoded = ArraysKt.joinToString$default(var10000, (CharSequence)"", (CharSequence)null, (CharSequence)null, 0, (CharSequence)null, null, 30, (Object)null);
-                String encoded = null;
-                return ((Companion)this).fromHex("0x" + encoded);
+                char[] chars = value.toCharArray();
+                StringBuilder encoded = new StringBuilder();
+                for (char c : chars) {
+                    String hex = Integer.toHexString(c);
+                    hex = String.format("%2s", hex).replace(' ', '0');
+                    encoded.append(hex);
+                }
+                String encodedString = encoded.toString();
+                return ((Companion)this).fromHex("0x" + encodedString);
             }
         }
 

@@ -1,4 +1,4 @@
-package com.swmansion.starknet.data.extensions;
+package com.swmansion.starknet.extensions;
 
 import com.swmansion.starknet.data.types.Felt;
 import com.swmansion.starknet.data.types.NumAsHexBase;

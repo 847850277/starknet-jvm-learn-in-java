@@ -7,7 +7,7 @@ import java.math.BigInteger;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class NumAsHexBaseTests {
+public class NumAsHexBaseTest {
 
    @Test
    public void numbers_can_t_be_created_with_a_negative_value(){
@@ -35,6 +35,17 @@ public class NumAsHexBaseTests {
         assertEquals("NumAsHex(0xabcdef01234567890)",NumAsHex.fromHex("0xabcdef01234567890").toString());
         assertEquals("Uint128(0xabcdef01234567890)",Uint128.fromHex("0xabcdef01234567890").toString());
         assertEquals("Uint256(58462017464642449753835857636044240746640)",Uint256.fromHex("0xabcdef01234567890abcdef01234567890").toString());
+   }
+
+
+   @Test
+   public void numbers_are_comparable(){
+       Felt felt1 = Felt.fromHex("0x123");
+       Felt felt2 = Felt.fromHex("0x456");
+       Uint64 uint64 = Uint64.fromHex("0x123");
+       Uint256 uint256 = Uint256.fromHex("0x123");
+       assertEquals(felt1.compareTo(uint64), 0);
+       assertEquals(felt1.compareTo(uint256), 0);
    }
 
 }

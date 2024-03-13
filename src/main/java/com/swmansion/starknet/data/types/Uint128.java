@@ -1,8 +1,8 @@
 package com.swmansion.starknet.data.types;
 
 import com.swmansion.starknet.data.ParseHex;
-import com.swmansion.starknet.data.extensions.ToFeltKt;
-import com.swmansion.starknet.data.extensions.ToHexKt;
+import com.swmansion.starknet.extensions.ToFeltKt;
+import com.swmansion.starknet.extensions.ToHexKt;
 import com.swmansion.starknet.data.types.conversions.ConvertibleToCalldata;
 import kotlin.Metadata;
 import kotlin.collections.CollectionsKt;

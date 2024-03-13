@@ -1,6 +1,6 @@
 package com.swmansion.starknet.crypto;
 
-import com.swmansion.starknet.data.extensions.ToFeltKt;
+import com.swmansion.starknet.extensions.ToFeltKt;
 import com.swmansion.starknet.data.types.Felt;
 import kotlin.Metadata;
 import kotlin.jvm.internal.Intrinsics;
