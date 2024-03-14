@@ -1,8 +1,6 @@
 package com.swmansion.starknet.extensions;
 
 import com.swmansion.starknet.data.types.Felt;
-import kotlin.collections.ArraysKt;
-import kotlin.jvm.internal.Intrinsics;
 
 import java.math.BigInteger;
 import java.util.Arrays;

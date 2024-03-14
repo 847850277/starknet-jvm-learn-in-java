@@ -3,13 +3,8 @@ package com.swmansion.starknet.extensions;
 import com.swmansion.starknet.data.types.Felt;
 import com.swmansion.starknet.data.types.conversions.ConvertibleToCalldata;
 import kotlin.Metadata;
-import kotlin.collections.CollectionsKt;
-import kotlin.jvm.internal.Intrinsics;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 
 @Metadata(
