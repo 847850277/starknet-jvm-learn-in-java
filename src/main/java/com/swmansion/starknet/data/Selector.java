@@ -1,6 +1,7 @@
-package com.swmansion.starknet.data.types;
+package com.swmansion.starknet.data;
 
 import com.swmansion.starknet.crypto.Keccak;
+import com.swmansion.starknet.data.types.Felt;
 import kotlin.Metadata;
 import kotlin.jvm.internal.Intrinsics;
 import kotlin.text.Charsets;

@@ -1,5 +1,6 @@
 package com.swmansion.starknet.data.types;
 
+import com.swmansion.starknet.data.Selector;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
