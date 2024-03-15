@@ -1,12 +1,8 @@
 package com.swmansion.starknet.data;
 
 import com.swmansion.starknet.crypto.StarknetCurve;
-import com.swmansion.starknet.crypto.Poseidon;
 import com.swmansion.starknet.data.types.Felt;
-import com.swmansion.starknet.data.types.ResourceBoundsMapping;
 import com.swmansion.starknet.data.types.StarknetChainId;
-import com.swmansion.starknet.data.types.Uint64;
-import com.swmansion.starknet.data.types.transactions.DAMode;
 import com.swmansion.starknet.data.types.transactions.TransactionType;
 import com.swmansion.starknet.data.types.transactions.TransactionVersion;
 
