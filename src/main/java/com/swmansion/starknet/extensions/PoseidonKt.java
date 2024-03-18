@@ -4,6 +4,7 @@ import java.math.BigInteger;
 
 public class PoseidonKt {
 
+
     public static long[] splitBigInteger(BigInteger bigInt) {
         long[] result = new long[4];
 
@@ -26,7 +27,7 @@ public class PoseidonKt {
         BigInteger[] result = new BigInteger[longArray.length];
 
         for (int i = 0; i < longArray.length; i++) {
-            result[i] = BigInteger.valueOf(Long.parseUnsignedLong(String.valueOf(longArray[i])));
+            result[i] = new BigInteger(Long.toUnsignedString(longArray[i]));
         }
 
         return result;

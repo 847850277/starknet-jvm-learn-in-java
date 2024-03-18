@@ -1,11 +1,13 @@
 package com.swmansion.starknet.data.types;
 
 import com.swmansion.starknet.data.TransactionHashCalculator;
+import com.swmansion.starknet.data.types.transactions.DAMode;
 import com.swmansion.starknet.data.types.transactions.TransactionVersion;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -33,50 +35,185 @@ public class TransactionHashCalculatorTest {
             assertEquals(expected, hash);
         }
 
-//        @Test
-//        void calculate_deploy_account_v1_transaction_hash() {
-//            Felt hash = TransactionHashCalculator.calculateDeployAccountV1TxHash(
-//                    Felt.fromHex("0x21a7f43387573b68666669a0ed764252ce5367708e696e31967764a90b429c2"),
-//                    calldata,
-//                    new Felt(1234),
-//                    chainId,
-//                    TransactionVersion.V1,
-//                    maxFee,
-//                    Felt.ZERO
-//            );
-//            Felt expected = Felt.fromHex("0x68beaf15e356928a1850cf343be85032efad964324b0abca4a9a57ff2057ef7");
-//            assertEquals(expected, hash);
-//        }
-//
-//        @Test
-//        void calculate_declare_v1_transaction_hash() {
-//            Felt hash = TransactionHashCalculator.calculateDeclareV1TxHash(
-//                    Felt.fromHex("0x5ae9d09292a50ed48c5930904c880dab56e85b825022a7d689cfc9e65e01ee7"),
-//                    Felt.fromHex("0x6352037a8acbb31095a8ed0f4aa8d8639e13b705b043a1b08f9640d2f9f0d56"),
-//                    TransactionVersion.V1,
-//                    chainId,
-//                    new Felt(9876),
-//                    maxFee
-//            );
-//            Felt expected = Felt.fromHex("0x64584f4e821e8d3bcd08295cbd7675858ca9a5a882108e9a31df273e2fb320f");
-//            assertEquals(expected, hash);
-//        }
-//
-//        @Test
-//        void calculate_declare_v2_transaction_hash() {
-//            Felt hash = TransactionHashCalculator.calculateDeclareV2TxHash(
-//                    Felt.fromHex("0x5ae9d09292a50ed48c5930904c880dab56e85b825022a7d689cfc9e65e01ee7"),
-//                    Felt.fromHex("0x1add56d64bebf8140f3b8a38bdf102b7874437f0c861ab4ca7526ec33b4d0f8"),
-//                    Felt.fromHex("0x6352037a8acbb31095a8ed0f4aa8d8639e13b705b043a1b08f9640d2f9f0d56"),
-//                    TransactionVersion.V2,
-//                    chainId,
-//                    new Felt(9876),
-//                    maxFee
-//            );
-//            Felt expected = Felt.fromHex("0x31e70aad6b93265e2bd1f619841115320a2a2899759a3af3b1d9582f23e7588");
-//            assertEquals(expected, hash);
-//        }
+        @Test
+        void calculate_deploy_account_v1_transaction_hash() {
+            Felt hash = TransactionHashCalculator.calculateDeployAccountV1TxHash(
+                    Felt.fromHex("0x21a7f43387573b68666669a0ed764252ce5367708e696e31967764a90b429c2"),
+                    calldata,
+                    new Felt(1234),
+                    chainId,
+                    TransactionVersion.V1,
+                    maxFee,
+                    Felt.ZERO
+            );
+            Felt expected = Felt.fromHex("0x68beaf15e356928a1850cf343be85032efad964324b0abca4a9a57ff2057ef7");
+            assertEquals(expected, hash);
+        }
 
+        @Test
+        void calculate_declare_v1_transaction_hash() {
+            Felt hash = TransactionHashCalculator.calculateDeclareV1TxHash(
+                    Felt.fromHex("0x5ae9d09292a50ed48c5930904c880dab56e85b825022a7d689cfc9e65e01ee7"),
+                    chainId,
+                    Felt.fromHex("0x6352037a8acbb31095a8ed0f4aa8d8639e13b705b043a1b08f9640d2f9f0d56"),
+                    maxFee,
+                    TransactionVersion.V1,
+                    new Felt(9876)
+            );
+            Felt expected = Felt.fromHex("0x64584f4e821e8d3bcd08295cbd7675858ca9a5a882108e9a31df273e2fb320f");
+            assertEquals(expected, hash);
+        }
+
+        @Test
+        void calculate_declare_v2_transaction_hash() {
+            Felt hash = TransactionHashCalculator.calculateDeclareV2TxHash(
+                    Felt.fromHex("0x5ae9d09292a50ed48c5930904c880dab56e85b825022a7d689cfc9e65e01ee7"),
+                    chainId,
+                    Felt.fromHex("0x6352037a8acbb31095a8ed0f4aa8d8639e13b705b043a1b08f9640d2f9f0d56"),
+                    maxFee,
+                    TransactionVersion.V2,
+                    new Felt(9876),
+                    Felt.fromHex("0x1add56d64bebf8140f3b8a38bdf102b7874437f0c861ab4ca7526ec33b4d0f8")
+            );
+            Felt expected = Felt.fromHex("0x31e70aad6b93265e2bd1f619841115320a2a2899759a3af3b1d9582f23e7588");
+            assertEquals(expected, hash);
+        }
+
+    }
+
+    @Nested
+    class TransactionHashV3Test{
+
+        private final StarknetChainId chainId = StarknetChainId.GOERLI;
+
+        @Test
+        public void prepareDataAvailabilityModes() {
+            Felt result = TransactionHashCalculator.prepareDataAvailabilityModes(
+                    DAMode.L1,
+                    DAMode.L1
+            );
+            assertEquals(Felt.ZERO, result);
+
+            Felt result2 = TransactionHashCalculator.prepareDataAvailabilityModes(
+                    DAMode.L2,
+                    DAMode.L1
+            );
+            assertEquals(Felt.ONE, result2);
+
+            Felt result3 = TransactionHashCalculator.prepareDataAvailabilityModes(
+                    DAMode.L1,
+                    DAMode.L2
+            );
+            assertEquals(Felt.fromHex("0x100000000"), result3);
+
+            Felt result4 = TransactionHashCalculator.prepareDataAvailabilityModes(
+                    DAMode.L2,
+                    DAMode.L2
+            );
+            assertEquals(Felt.fromHex("0x100000001"), result4);
+        }
+
+
+
+        @Test
+        public void calculateInvokeV3TransactionHash() {
+            List<Felt> calldata = Arrays.asList(
+                    Felt.fromHex("0x2"),
+                    Felt.fromHex("0x4c312760dfd17a954cdd09e76aa9f149f806d88ec3e402ffaf5c4926f568a42"),
+                    Felt.fromHex("0x31aafc75f498fdfa7528880ad27246b4c15af4954f96228c9a132b328de1c92"),
+                    Felt.fromHex("0x0"),
+                    Felt.fromHex("0x6"),
+                    Felt.fromHex("0x450703c32370cf7ffff540b9352e7ee4ad583af143a361155f2b485c0c39684"),
+                    Felt.fromHex("0xb17d8a2731ba7ca1816631e6be14f0fc1b8390422d649fa27f0fbb0c91eea8"),
+                    Felt.fromHex("0x6"),
+                    Felt.fromHex("0x0"),
+                    Felt.fromHex("0x6"),
+                    Felt.fromHex("0x6333f10b24ed58cc33e9bac40b0d52e067e32a175a97ca9e2ce89fe2b002d82"),
+                    Felt.fromHex("0x3"),
+                    Felt.fromHex("0x602e89fe5703e5b093d13d0a81c9e6d213338dc15c59f4d3ff3542d1d7dfb7d"),
+                    Felt.fromHex("0x20d621301bea11ffd9108af1d65847e9049412159294d0883585d4ad43ad61b"),
+                    Felt.fromHex("0x276faadb842bfcbba834f3af948386a2eb694f7006e118ad6c80305791d3247"),
+                    Felt.fromHex("0x613816405e6334ab420e53d4b38a0451cb2ebca2755171315958c87d303cf6")
+            );
+
+            ResourceBounds l1Gas = new ResourceBounds(
+                    Uint64.fromHex("0x186a0"),
+                    Uint128.fromHex("0x5af3107a4000")
+            );
+
+            ResourceBoundsMapping resourceBounds = new ResourceBoundsMapping(l1Gas);
+
+            Felt hash = TransactionHashCalculator.calculateInvokeTxV3Hash(
+                    Felt.fromHex("0x3f6f3bc663aedc5285d6013cc3ffcbc4341d86ab488b8b68d297f8258793c41"),
+                    calldata,
+                    chainId,
+                    TransactionVersion.V3,
+                    Felt.fromHex("0x8a9"),
+                    Uint64.ZERO,
+                    resourceBounds,
+                    Collections.emptyList(),
+                    Collections.emptyList(),
+                    DAMode.L1,
+                    DAMode.L1
+            );
+
+            Felt expected = Felt.fromHex("0x41906f1c314cca5f43170ea75d3b1904196a10101190d2b12a41cc61cfd17c");
+            assertEquals(expected, hash);
+        }
+
+
+        @Test
+        public void calculateDeployAccountV3TransactionHash() {
+            Felt hash = TransactionHashCalculator.calculateDeployAccountV3TxHash(
+                    Felt.Companion.fromHex("0x2338634f11772ea342365abd5be9d9dc8a6f44f159ad782fdebd3db5d969738"),
+                    Arrays.asList(
+                            Felt.Companion.fromHex("0x5cd65f3d7daea6c63939d659b8473ea0c5cd81576035a4d34e52fb06840196c")
+                    ),
+                    Felt.ZERO,
+                    Collections.emptyList(),
+                    chainId,
+                    TransactionVersion.V3,
+                    Felt.ZERO,
+                    Uint64.ZERO,
+                    new ResourceBoundsMapping(
+                            new ResourceBounds(
+                                    Uint64.Companion.fromHex("0x186a0"),
+                                    Uint128.Companion.fromHex("0x5af3107a4000")
+                            )
+                    ),
+                    DAMode.L1,
+                    DAMode.L1
+            );
+            Felt expected = Felt.Companion.fromHex("0x29fd7881f14380842414cdfdd8d6c0b1f2174f8916edcfeb1ede1eb26ac3ef0");
+            assertEquals(expected, hash);
+        }
+
+
+
+        @Test
+        public void calculateDeclareV3TransactionHash() {
+            Felt hash = TransactionHashCalculator.calculateDeclareV3TxHash(
+                    Felt.Companion.fromHex("0x5ae9d09292a50ed48c5930904c880dab56e85b825022a7d689cfc9e65e01ee7"),
+                    chainId,
+                    Felt.Companion.fromHex("0x2fab82e4aef1d8664874e1f194951856d48463c3e6bf9a8c68e234a629a6f50"),
+                    TransactionVersion.V3,
+                    Felt.ONE,
+                    Felt.Companion.fromHex("0x1add56d64bebf8140f3b8a38bdf102b7874437f0c861ab4ca7526ec33b4d0f8"),
+                    Uint64.ZERO,
+                    new ResourceBoundsMapping(
+                            new ResourceBounds(
+                                    Uint64.Companion.fromHex("0x186a0"),
+                                    Uint128.Companion.fromHex("0x2540be400")
+                            )
+                    ),
+                    Collections.emptyList(),
+                    Collections.emptyList(),
+                    DAMode.L1,
+                    DAMode.L1
+            );
+            Felt expected = Felt.Companion.fromHex("0x41d1f5206ef58a443e7d3d1ca073171ec25fa75313394318fc83a074a6631c3");
+            assertEquals(expected, hash);
+        }
     }
 
 }

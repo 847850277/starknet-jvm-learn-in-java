@@ -15,8 +15,11 @@ public class Poseidon {
     private static final int r = 2;
 
     static {
-        System.loadLibrary("poseidon");
-        System.loadLibrary("poseidon_jni");
+        //System.loadLibrary("poseidon");
+        //System.loadLibrary("poseidon_jni");
+
+        System.load("/Users/zhengpeng/Work/Source/Code/847850277/starknet-jvm-learn-in-java/crypto/poseidon/poseidon/libposeidon.dylib");
+        System.load("/Users/zhengpeng/Work/Source/Code/847850277/starknet-jvm-learn-in-java/crypto/poseidon/bindings/libposeidon_jni.dylib");
     }
 
     private static native long[][] hades(long[][] values);
