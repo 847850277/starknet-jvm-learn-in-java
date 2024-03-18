@@ -14,7 +14,8 @@ public class StarknetCurve {
     public static final BigInteger CURVE_ORDER = new BigInteger("800000000000010FFFFFFFFFFFFFFFFB781126DCAE7B2321E66A241ADC64D2F", 16);
 
     static {
-        System.loadLibrary("crypto_jni");
+        //System.loadLibrary("crypto_jni");
+        System.load("/Users/zhengpeng/Work/Source/Code/847850277/starknet-jvm-learn-in-java/crypto/pedersen/bindings/libcrypto_jni.dylib");
     }
 
     private static native byte[] pedersen(byte[] first, byte[] second);

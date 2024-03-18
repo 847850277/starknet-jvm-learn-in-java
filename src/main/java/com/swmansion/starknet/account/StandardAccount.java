@@ -6,6 +6,7 @@ import com.swmansion.starknet.data.types.transactions.InvokeTransactionV1Payload
 import com.swmansion.starknet.data.types.transactions.InvokeTransactionV3Payload;
 import com.swmansion.starknet.provider.Provider;
 import com.swmansion.starknet.signer.Signer;
+import com.swmansion.starknet.signer.StarkCurveSigner;
 
 import java.util.List;
 
