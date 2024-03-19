@@ -8,6 +8,8 @@ cmake .
 
 make
 
+gcc -dynamiclib -I/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home/include -I/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home/include/darwin -shared -o JNIDemo.dylib JNIDemo.c
+
 ```
 
 # 生成动态链接文件
