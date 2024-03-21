@@ -1,10 +1,12 @@
 package com.swmansion.starknet.account;
 
+import com.swmansion.starknet.data.BlockTag;
 import com.swmansion.starknet.data.InvokeParamsV3;
 import com.swmansion.starknet.data.types.*;
 import com.swmansion.starknet.data.types.transactions.InvokeTransactionV1Payload;
 import com.swmansion.starknet.data.types.transactions.InvokeTransactionV3Payload;
 import com.swmansion.starknet.provider.Provider;
+import com.swmansion.starknet.provider.Request;
 import com.swmansion.starknet.signer.Signer;
 import com.swmansion.starknet.signer.StarkCurveSigner;
 
@@ -80,5 +82,23 @@ public class StandardAccount implements Account {
         return null;
     }
 
-    // Implement the remaining methods as per your requirements
+    @Override
+    public Request<Felt> getNonce() {
+        return getNonce(BlockTag.PENDING);
+    }
+
+    @Override
+    public Request<Felt> getNonce(BlockTag blockTag) {
+        return provider.getNonce(address, blockTag);
+    }
+
+    @Override
+    public Request<Felt> getNonce(Felt blockHash) {
+        return provider.getNonce(address, blockHash);
+    }
+
+    @Override
+    public Request<Felt> getNonce(int blockNumber) {
+        return provider.getNonce(address, blockNumber);
+    }
 }

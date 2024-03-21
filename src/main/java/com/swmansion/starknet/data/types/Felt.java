@@ -1,8 +1,9 @@
 package com.swmansion.starknet.data.types;
 
 import com.swmansion.starknet.data.ParseHex;
-import com.swmansion.starknet.extensions.ToHexKt;
+import com.swmansion.starknet.data.serializers.FeltSerializer;
 import com.swmansion.starknet.data.types.conversions.ConvertibleToCalldata;
+import com.swmansion.starknet.extensions.ToHexKt;
 import kotlin.Metadata;
 import kotlin.collections.CollectionsKt;
 import kotlin.jvm.JvmField;
@@ -16,6 +17,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.math.BigInteger;
 import java.util.List;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.swmansion.starknet.data.serializers.FeltSerializer;
 
 @Metadata(
         mv = {2, 0, 0},
@@ -24,6 +27,7 @@ import java.util.List;
         d1 = {"\u0000>\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\t\n\u0000\n\u0002\u0010\b\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0006\n\u0002\u0010\u000e\n\u0000\n\u0002\u0010\u000b\n\u0000\n\u0002\u0010\u0000\n\u0002\b\u0003\n\u0002\u0010 \n\u0002\b\u0004\b\u0087\b\u0018\u0000 \u001a2\u00020\u00012\u00020\u0002:\u0001\u001aB\u000f\b\u0016\u0012\u0006\u0010\u0003\u001a\u00020\u0004¢\u0006\u0002\u0010\u0005B\u000f\b\u0016\u0012\u0006\u0010\u0003\u001a\u00020\u0006¢\u0006\u0002\u0010\u0007B\r\u0012\u0006\u0010\u0003\u001a\u00020\b¢\u0006\u0002\u0010\tJ\t\u0010\f\u001a\u00020\bHÆ\u0003J\u0013\u0010\r\u001a\u00020\u00002\b\b\u0002\u0010\u0003\u001a\u00020\bHÆ\u0001J\b\u0010\u000e\u001a\u00020\u000fH\u0016J\u0013\u0010\u0010\u001a\u00020\u00112\b\u0010\u0012\u001a\u0004\u0018\u00010\u0013HÖ\u0003J\t\u0010\u0014\u001a\u00020\u0006HÖ\u0001J\b\u0010\u0015\u001a\u00020\u000fH\u0016J\u000e\u0010\u0016\u001a\b\u0012\u0004\u0012\u00020\u00000\u0017H\u0016J\u0006\u0010\u0018\u001a\u00020\u000fJ\b\u0010\u0019\u001a\u00020\u000fH\u0016R\u0014\u0010\u0003\u001a\u00020\bX\u0096\u0004¢\u0006\b\n\u0000\u001a\u0004\b\n\u0010\u000b¨\u0006\u001b"},
         d2 = {"Lcom/swmansion/starknet/data/types/Felt;", "Lcom/swmansion/starknet/data/types/NumAsHexBase;", "Lcom/swmansion/starknet/data/types/conversions/ConvertibleToCalldata;", "value", "", "(J)V", "", "(I)V", "Ljava/math/BigInteger;", "(Ljava/math/BigInteger;)V", "getValue", "()Ljava/math/BigInteger;", "component1", "copy", "decString", "", "equals", "", "other", "", "hashCode", "hexString", "toCalldata", "", "toShortString", "toString", "Companion", "starknet-jvm-learn"}
 )
+@JsonSerialize(using = FeltSerializer.class)
 public final class Felt extends NumAsHexBase implements ConvertibleToCalldata {
 
 
@@ -238,8 +242,7 @@ public final class Felt extends NumAsHexBase implements ConvertibleToCalldata {
 
         @NotNull
         public final KSerializer serializer() {
-            return null;
-            //return (KSerializer)FeltSerializer.INSTANCE;
+            return (KSerializer)FeltSerializer.getInstance();
         }
     }
 
