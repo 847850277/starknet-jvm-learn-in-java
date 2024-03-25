@@ -1,7 +1,5 @@
 package com.swmansion.starknet.data.types.transactions;
 
-package com.swmansion.starknet.data.types.transactions;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ExecutionResources extends Resources {

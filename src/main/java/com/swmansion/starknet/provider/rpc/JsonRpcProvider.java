@@ -60,10 +60,11 @@ public class JsonRpcProvider implements Provider {
     }
 
     private Request<Felt> getNonce(GetNoncePayload payload) {
-        KType var10001 = Reflection.typeOf(GetNoncePayload.class);
-        SerializationStrategy serializer = (SerializationStrategy) SerializersKt.serializer(Json.Default.getSerializersModule(), var10001);
-        JsonElement jsonPayload = Json.Default.encodeToJsonElement(serializer,payload);
-        return buildRequest(JsonRpcMethod.GET_NONCE, jsonPayload, Felt.Companion.serializer());
+//        KType var10001 = Reflection.typeOf(GetNoncePayload.class);
+//        SerializationStrategy serializer = (SerializationStrategy) SerializersKt.serializer(Json.Default.getSerializersModule(), var10001);
+//        JsonElement jsonPayload = Json.Default.encodeToJsonElement(serializer,payload);
+//        return buildRequest(JsonRpcMethod.GET_NONCE, jsonPayload, Felt.Companion.serializer());
+        return null;
     }
 
     private final Map buildRequestJson(String method, JsonElement paramsJson) {
