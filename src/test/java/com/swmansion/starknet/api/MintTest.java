@@ -29,7 +29,7 @@ public class MintTest {
 
         MediaType JSON = MediaType.get("application/json; charset=utf-8");
         String jsonInputString = "{"
-                + "\"address\": \"0x00998f1Aa20CB1D57da61F5dae2bF5F35BCfB42D41c7bb9E33D3D281a1cE3b25\","
+                + "\"address\": \"0x4428a52af4b56b60eafba3bfe8d45f06b3ba6567db259e1f815f818632fd18f\","
                 + "\"amount\": 500000000000000000000000000000,"
                 + "\"unit\": \"WEI\""
                 + "}";
@@ -59,7 +59,7 @@ public class MintTest {
 
         MediaType JSON = MediaType.get("application/json; charset=utf-8");
         String jsonInputString = "{"
-                + "\"address\": \"0x00998f1Aa20CB1D57da61F5dae2bF5F35BCfB42D41c7bb9E33D3D281a1cE3b25\","
+                + "\"address\": \"0x4428a52af4b56b60eafba3bfe8d45f06b3ba6567db259e1f815f818632fd18f\","
                 + "\"amount\": 500000000000000000000000000000,"
                 + "\"unit\": \"FRI\""
                 + "}";
