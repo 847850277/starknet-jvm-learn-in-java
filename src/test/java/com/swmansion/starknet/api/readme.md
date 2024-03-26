@@ -1,7 +1,7 @@
 this package is test for [apis](https://github.com/0xSpaceShard/starknet-devnet-rs)
 
-
 - 部署账户
+
   ```bash
 
   -- request
@@ -10,9 +10,6 @@ this package is test for [apis](https://github.com/0xSpaceShard/starknet-devnet-
   -- response
   {"command":"account deploy","transaction_hash":"0x1cbe432a0c94353fd0e412626faed02cc7adb5098ba5d899d4a0743258d071a"}
   ```
-
-
-
 - 查看交易状态
 
   ```bash
@@ -26,3 +23,18 @@ this package is test for [apis](https://github.com/0xSpaceShard/starknet-devnet-
   {"jsonrpc":"2.0","id":0,"result":{"finality_status":"ACCEPTED_ON_L2","execution_status":"SUCCEEDED"}}%   
 
   ```
+  
+- 创建账户
+  - 创建账户
+  - 为账户提供资金
+  - 部署账户
+
+
+```bash
+
+0x025e5b9982a2c8e04cb477d7c71aec25e2043e4d52cb61604208e1939acfb8bf
+
+curl -d '{"amount":8646000000000, "address":"0x0472fC1f0F96eAf99c607E7CDc925713C77b78da9811149733B18DF00Ab3B260"}' -H "Content-Type: application/json" -X POST http://127.0.0.1:5050/mint
+
+
+```
