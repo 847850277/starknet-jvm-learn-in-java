@@ -1,4 +1,19 @@
 this package is test for [apis](https://github.com/0xSpaceShard/starknet-devnet-rs)
+- 充值账户
+  
+  ```bash
+  
+  
+  curl --location 'http://127.0.0.1:5050/mint' \
+--header 'accept: application/json' \
+--header 'content-type: application/json' \
+--data '{
+"address": "0x00998f1Aa20CB1D57da61F5dae2bF5F35BCfB42D41c7bb9E33D3D281a1cE3b25",
+"amount": 500000000000000000000000000000,
+"unit": "WEI"
+}'
+  
+  ```
 
 - 部署账户
 
