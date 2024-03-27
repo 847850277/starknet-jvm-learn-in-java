@@ -67,7 +67,7 @@ async function main() {
             console.error('Error:', error);
         });
 
-    const estimatedFee = await estimateBraavosAccountDeployFee(privateKeyAX, provider);
+    //const estimatedFee = await estimateBraavosAccountDeployFee(privateKeyAX, provider);
 
 
     const accountAX = new Account(provider, AXcontractAddress.toString(), privateKeyAX,'1');
@@ -77,7 +77,6 @@ async function main() {
         constructorCalldata: AXproxyConstructorCallData,
         contractAddress: AXcontractAddress,
         addressSalt: starkKeyPubAX,
-        simulation_flags:""
     };
 
     const { transaction_hash: AXdAth, contract_address: AXcontractFinalAddress } =
