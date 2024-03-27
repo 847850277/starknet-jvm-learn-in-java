@@ -1,5 +1,6 @@
 import React from 'react';
-import { Account, constants, ec, json, stark, Provider, hash, CallData } from 'starknet';
+import { Account, ec, json, stark, Provider, hash, CallData } from 'starknet';
+
 
 
 
@@ -19,32 +20,35 @@ const provider = new Provider({ sequencer: { baseUrl: 'http://127.0.0.1:5050' } 
 
 
 
-// new Open Zeppelin account v0.5.1
-// Generate public and private key pair.
-const privateKey = stark.randomAddress();
-console.log('New OZ account:\nprivateKey=', privateKey);
-const starkKeyPub = ec.starkCurve.getStarkKey(privateKey);
-console.log('publicKey=', starkKeyPub);
+//new Argent X account v0.2.3
+const argentXproxyClassHash = '0x25ec026985a3bf9d0cc1fe17326b245dfdc3ff89b8fde106542a3ea56c5a918';
+const argentXaccountClassHash =
+    '0x033434ad846cdd5f23eb73ff09fe6fddd568284a0fb7d1be20ee482f044dabe2';
 
-const OZaccountClassHash = '0x2794ce20e5f2ff0d40e632cb53845b9f4e526ebd8471983f7dbd355b721d5a';
-// Calculate future address of the account
-const OZaccountConstructorCallData = CallData.compile({ publicKey: starkKeyPub });
-const OZcontractAddress = hash.calculateContractAddressFromHash(
-    starkKeyPub,
-    OZaccountClassHash,
-    OZaccountConstructorCallData,
+// Generate public and private key pair.
+const privateKeyAX = stark.randomAddress();
+console.log('AX_ACCOUNT_PRIVATE_KEY=', privateKeyAX);
+const starkKeyPubAX = ec.starkCurve.getStarkKey(privateKeyAX);
+console.log('AX_ACCOUNT_PUBLIC_KEY=', starkKeyPubAX);
+
+// Calculate future address of the ArgentX account
+const AXproxyConstructorCallData = CallData.compile({
+    implementation: argentXaccountClassHash,
+    selector: hash.getSelectorFromName('initialize'),
+    calldata: CallData.compile({ signer: starkKeyPubAX, guardian: '0' }),
+});
+const AXcontractAddress = hash.calculateContractAddressFromHash(
+    starkKeyPubAX,
+    argentXproxyClassHash,
+    AXproxyConstructorCallData,
     0
 );
-console.log('Precalculated account address=', OZcontractAddress);
+console.log('Precalculated account address=', AXcontractAddress);
 
-//const address = OZcontractAddress.
 
-// genrate code by
-
-// Define the request body
 const body = {
-    address: OZcontractAddress.toString(),
-    amount: 50000,
+    address: AXcontractAddress.toString(),
+    amount: 5000000,
     unit: "WEI"
 };
 
@@ -62,22 +66,17 @@ fetch('http://127.0.0.1:5050/mint', {
         console.error('Error:', error);
     });
 
+const accountAX = new Account(provider, AXcontractAddress.toString(), privateKeyAX,'1');
 
-//const OZaccount = new Account(provider, OZcontractAddress, privateKey);
-const OZaccount = new Account(provider, OZcontractAddress.toString(), privateKey, '1');
+const deployAccountPayload = {
+    classHash: argentXproxyClassHash,
+    constructorCalldata: AXproxyConstructorCallData,
+    contractAddress: AXcontractAddress,
+    addressSalt: starkKeyPubAX,
+};
 
-
-
-const { transaction_hash, contract_address } = await OZaccount.deployAccount({
-    classHash: OZaccountClassHash,
-    constructorCalldata: OZaccountConstructorCallData,
-    addressSalt: starkKeyPub,
-});
-//
-await provider.waitForTransaction(transaction_hash);
-console.log('✅ New OpenZeppelin account created.\n   address =', contract_address);
-
-
-
+const { transaction_hash: AXdAth, contract_address: AXcontractFinalAddress } =
+    await accountAX.deployAccount(deployAccountPayload);
+console.log('✅ ArgentX wallet deployed at:', AXcontractFinalAddress);
 
 export default CreateAccount;
