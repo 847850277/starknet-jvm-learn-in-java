@@ -18,7 +18,7 @@ class LoggingRpcProvider extends RpcProvider {
 
 async function main() {
     //const provider = new RpcProvider({ nodeUrl: "http://127.0.0.1:5050/rpc" }); // only for starknet-devnet-rs
-    const provider = new LoggingRpcProvider({ nodeUrl: "http://127.0.0.1:5050/rpc" });
+    const provider = new RpcProvider({ nodeUrl: "http://127.0.0.1:5050/rpc" });
 
     console.log("Provider connected to Starknet-devnet-rs");
     //new Argent X account v0.2.3
@@ -53,7 +53,7 @@ async function main() {
         unit: "WEI"
     };
 
-// Send the request
+    // Send the request
     fetch('http://127.0.0.1:5050/mint', {
         method: 'POST',
         headers: {
@@ -66,8 +66,6 @@ async function main() {
         .catch((error) => {
             console.error('Error:', error);
         });
-
-    //const estimatedFee = await estimateBraavosAccountDeployFee(privateKeyAX, provider);
 
 
     const accountAX = new Account(provider, AXcontractAddress.toString(), privateKeyAX,'1');
