@@ -1,0 +1,297 @@
+
+### mint 1
+
+POST http://localhost:5050/mint
+Accept: application/json
+Content-Type: application/json
+
+{
+  "address": "0x236ca5856fe740e51f8ae1e9d3cdfeb6a27c32076022cf66cda2f13a54b5264",
+  "amount": 500000000000000000000000000000,
+  "unit": "WEI"
+}
+
+
+### mint 2
+
+POST http://localhost:5050/mint
+Accept: application/json
+Content-Type: application/json
+
+{
+  "address": "0x236ca5856fe740e51f8ae1e9d3cdfeb6a27c32076022cf66cda2f13a54b5264",
+  "amount": 500000000000000000000000000000,
+  "unit": "FRI"
+}
+
+### account deploy
+### sncast --json --path-to-scarb-toml /Users/zhengpeng/Work/Source/Code/847850277/starknet-jvm-learn/src/test/resources/contracts/Scarb.toml --accounts-file /Users/zhengpeng/Work/Source/Code/847850277/starknet-jvm-learn/src/test/resources/accounts/standard_account_test/starknet_open_zeppelin_accounts.json --url http://127.0.0.1:5050/rpc --account __default__ account deploy --name __default__ --max-fee 0x38d7ea4c68000 --class-hash 0x4d07e40e93398ed3c76981e72dd1fd22557a78ce36c0515f679e27f0bb5bc5f
+
+### starknet_getTransactionStatus1
+POST http://localhost:5050/rpc
+Accept: application/json
+Content-Type: application/json
+
+{
+  "jsonrpc": "2.0",
+  "method": "starknet_getTransactionStatus",
+  "id": 0,
+  "params": {
+    "transaction_hash": "0x57d17bb3cae816f42b64b674a960523ee19b7e42122e2e9184b95b210153c80"
+  }
+}
+
+### mint 3
+
+POST http://localhost:5050/mint
+Accept: application/json
+Content-Type: application/json
+
+{
+  "address": "0x4428a52af4b56b60eafba3bfe8d45f06b3ba6567db259e1f815f818632fd18f",
+  "amount": 500000000000000000000000000000,
+  "unit": "WEI"
+}
+
+### mint 4
+
+POST http://localhost:5050/mint
+Accept: application/json
+Content-Type: application/json
+
+{
+  "address": "0x4428a52af4b56b60eafba3bfe8d45f06b3ba6567db259e1f815f818632fd18f",
+  "amount": 500000000000000000000000000000,
+  "unit": "FRI"
+}
+
+### account deploy
+### sncast --json --path-to-scarb-toml /Users/zhengpeng/Work/Source/Code/847850277/starknet-jvm-learn/src/test/resources/contracts/Scarb.toml --accounts-file /Users/zhengpeng/Work/Source/Code/847850277/starknet-jvm-learn/src/test/resources/accounts/standard_account_test/starknet_open_zeppelin_accounts.json --url http://127.0.0.1:5050/rpc --account __default__ account deploy --name standard_account_test --max-fee 0x38d7ea4c68000 --class-hash 0x4d07e40e93398ed3c76981e72dd1fd22557a78ce36c0515f679e27f0bb5bc5f
+
+### starknet_getTransactionStatus2
+POST http://localhost:5050/rpc
+Accept: application/json
+Content-Type: application/json
+
+{
+  "jsonrpc": "2.0",
+  "method": "starknet_getTransactionStatus",
+  "id": 0,
+  "params": {
+    "transaction_hash": "0x1cbe432a0c94353fd0e412626faed02cc7adb5098ba5d899d4a0743258d071a"
+  }
+}
+
+### declare
+### sncast --json --path-to-scarb-toml /Users/zhengpeng/Work/Source/Code/847850277/starknet-jvm-learn/src/test/resources/contracts/Scarb.toml --accounts-file /Users/zhengpeng/Work/Source/Code/847850277/starknet-jvm-learn/src/test/resources/accounts/standard_account_test/starknet_open_zeppelin_accounts.json --url http://127.0.0.1:5050/rpc --account __default__ declare --contract-name Balance --max-fee 0x11c37937e08000
+
+### starknet_getTransactionStatus3
+POST http://localhost:5050/rpc
+Accept: application/json
+Content-Type: application/json
+
+{
+  "jsonrpc": "2.0",
+  "method": "starknet_getTransactionStatus",
+  "id": 0,
+  "params": {
+    "transaction_hash": "0x25d7846f5ad17fdbe3acc6110f6828ca88f37ca6b6bf81837841f4f290d7245"
+  }
+}
+
+### deploy 需要解决如何部署
+### sncast --json --path-to-scarb-toml /Users/zhengpeng/Work/Source/Code/847850277/starknet-jvm-learn/src/test/resources/contracts/Scarb.toml --accounts-file /Users/zhengpeng/Work/Source/Code/847850277/starknet-jvm-learn/src/test/resources/accounts/standard_account_test/starknet_open_zeppelin_accounts.json --url http://127.0.0.1:5050/rpc --account __default__ deploy --class-hash 0x219d203dcacab933706bf9426a446c5082a983ed2044992fb0035a7aea9643d --max-fee 0x38d7ea4c68000 --constructor-calldata 0x1c3
+
+### starknet_getTransactionStatus4
+POST http://localhost:5050/rpc
+Accept: application/json
+Content-Type: application/json
+
+{
+  "jsonrpc": "2.0",
+  "method": "starknet_getTransactionStatus",
+  "id": 0,
+  "params": {
+    "transaction_hash": "0x15377df31988a0f3dcc6472e75686bcc6446d21fbbe1d7f723d0af54e13e990"
+  }
+}
+
+### starknet_chainId
+POST http://localhost:5050/rpc
+Accept: application/json
+Content-Type: application/json
+
+{
+  "jsonrpc": "2.0",
+  "method": "starknet_chainId",
+  "id": 0,
+  "params": []
+}
+
+### mint 5
+
+POST http://localhost:5050/mint
+Accept: application/json
+Content-Type: application/json
+
+{
+  "address": "0x3163a5430647ec0387aac4958666e0640948f77434a1adbdbf31a2e867f7c0a",
+  "amount": 500000000000000000000000000000,
+  "unit": "WEI"
+}
+
+### starknet_addDeployAccountTransaction
+POST http://localhost:5050/rpc
+Accept: application/json
+Content-Type: application/json
+
+{
+  "jsonrpc": "2.0",
+  "method": "starknet_addDeployAccountTransaction",
+  "id": 0,
+  "params": {
+    "deploy_account_transaction": {
+      "class_hash": "0x4d07e40e93398ed3c76981e72dd1fd22557a78ce36c0515f679e27f0bb5bc5f",
+      "contract_address_salt": "0x1",
+      "constructor_calldata": [
+        "0x6ab9e9e75f5a5d90796f155d58671a6a038e47e15643383e3205e806410050e"
+      ],
+      "version": "0x1",
+      "nonce": "0x0",
+      "max_fee": "0x11fcc58c7f7000",
+      "signature": [
+        "0x1d5542b40fe675b42786ae06dd36b28c9092e9401ebe9d68a9cbd9a9a6c4007",
+        "0x3ac3f6ac7bffcdaddd0aa3d9ce2d852f9a4bc922b15e3c75ed987730bc45168"
+      ],
+      "type": "DEPLOY_ACCOUNT"
+    }
+  }
+}
+
+### starknet_getTransactionByHash
+POST http://localhost:5050/rpc
+Accept: application/json
+Content-Type: application/json
+
+{
+  "jsonrpc": "2.0",
+  "method": "starknet_getTransactionByHash",
+  "id": 0,
+  "params": {
+    "transaction_hash": "0x3e6d4a3822bd3be59c2f562109b1acda6365e2c3d7a79e7e925b31ed020c77f"
+  }
+}
+
+### starknet_getNonce
+POST http://localhost:5050/rpc
+Accept: application/json
+Content-Type: application/json
+
+{
+  "jsonrpc": "2.0",
+  "method": "starknet_getNonce",
+  "id": 0,
+  "params": {
+    "contract_address": "0x3163a5430647ec0387aac4958666e0640948f77434a1adbdbf31a2e867f7c0a",
+    "block_id": "pending"
+  }
+}
+
+### starknet_estimateFee
+POST http://localhost:5050/rpc
+Accept: application/json
+Content-Type: application/json
+
+{
+  "jsonrpc": "2.0",
+  "method": "starknet_estimateFee",
+  "id": 0,
+  "params": {
+    "request": [
+      {
+        "sender_address": "0x3163a5430647ec0387aac4958666e0640948f77434a1adbdbf31a2e867f7c0a",
+        "calldata": [
+          "0x1",
+          "0x14e04886265086e2480a07796e258b4564dd621dc1571316e08e9a5bb6230e0",
+          "0x362398bec32bc0ebb411203221a35a0301193a96f317ebe5e40be9f60d15320",
+          "0x0",
+          "0x1",
+          "0x1",
+          "0xa"
+        ],
+        "signature": [
+          "0x612e12ced75bb34b6a37d114ba7c4b038cc6b4ef4df93e8399e40ca9787fa12",
+          "0x4230bb429164b114acab7b61367a7dbfa537ab6edaf8421dd186672183811b3"
+        ],
+        "max_fee": "0x0",
+        "version": "0x100000000000000000000000000000001",
+        "nonce": "0x1",
+        "type": "INVOKE"
+      }
+    ],
+    "simulation_flags": [],
+    "block_id": "pending"
+  }
+}
+
+### starknet_getNonc2
+POST http://localhost:5050/rpc
+Accept: application/json
+Content-Type: application/json
+
+{
+  "jsonrpc": "2.0",
+  "method": "starknet_getNonce",
+  "id": 0,
+  "params": {
+    "contract_address": "0x3163a5430647ec0387aac4958666e0640948f77434a1adbdbf31a2e867f7c0a",
+    "block_id": "pending"
+  }
+}
+
+### starknet_addInvokeTransaction
+POST http://localhost:5050/rpc
+Accept: application/json
+Content-Type: application/json
+
+{
+  "jsonrpc": "2.0",
+  "method": "starknet_addInvokeTransaction",
+  "id": 0,
+  "params": {
+    "invoke_transaction": {
+      "type": "INVOKE",
+      "sender_address": "0x3163a5430647ec0387aac4958666e0640948f77434a1adbdbf31a2e867f7c0a",
+      "calldata": [
+        "0x1",
+        "0x14e04886265086e2480a07796e258b4564dd621dc1571316e08e9a5bb6230e0",
+        "0x362398bec32bc0ebb411203221a35a0301193a96f317ebe5e40be9f60d15320",
+        "0x0",
+        "0x1",
+        "0x1",
+        "0xa"
+      ],
+      "signature": [
+        "0x1631a12dc8e8ef417da0cb10fce64194322634756969564452681994802aee7",
+        "0x7ed490cd409bc5ad4cc458067857ea6daf518e14f7e36357d57c84d176a2e6"
+      ],
+      "max_fee": "0x24f890cf6400",
+      "version": "0x1",
+      "nonce": "0x1"
+    }
+  }
+}
+
+### starknet_getTransactionReceipt
+POST http://localhost:5050/rpc
+Accept: application/json
+Content-Type: application/json
+
+{
+  "jsonrpc": "2.0",
+  "method": "starknet_getTransactionReceipt",
+  "id": 0,
+  "params": {
+    "transaction_hash": "0x6987ea37e2821258d741e30c504e4ebc7ae9464c9719cf97c2cb6f4b4532a10"
+  }
+}

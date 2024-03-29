@@ -1,0 +1,55 @@
+
+### mint
+
+POST http://localhost:5050/mint
+Accept: application/json
+Content-Type: application/json
+
+{
+  "address": "0x3163a5430647ec0387aac4958666e0640948f77434a1adbdbf31a2e867f7c0a",
+  "amount": 500000000000000000000000000000,
+  "unit": "WEI"
+}
+
+### starknet_addDeployAccountTransaction
+POST http://localhost:5050/rpc
+Accept: application/json
+Content-Type: application/json
+
+{
+  "jsonrpc": "2.0",
+  "method": "starknet_addDeployAccountTransaction",
+  "id": 0,
+  "params": {
+    "deploy_account_transaction": {
+      "class_hash": "0x4d07e40e93398ed3c76981e72dd1fd22557a78ce36c0515f679e27f0bb5bc5f",
+      "contract_address_salt": "0x1",
+      "constructor_calldata": [
+        "0x6ab9e9e75f5a5d90796f155d58671a6a038e47e15643383e3205e806410050e"
+      ],
+      "version": "0x1",
+      "nonce": "0x0",
+      "max_fee": "0x11fcc58c7f7000",
+      "signature": [
+        "0x1d5542b40fe675b42786ae06dd36b28c9092e9401ebe9d68a9cbd9a9a6c4007",
+        "0x3ac3f6ac7bffcdaddd0aa3d9ce2d852f9a4bc922b15e3c75ed987730bc45168"
+      ],
+      "type": "DEPLOY_ACCOUNT"
+    }
+  }
+}
+
+### starknet_getTransactionByHash
+POST http://localhost:5050/rpc
+Accept: application/json
+Content-Type: application/json
+
+{
+  "jsonrpc": "2.0",
+  "method": "starknet_getTransactionByHash",
+  "id": 0,
+  "params": {
+    "transaction_hash": "0x3e6d4a3822bd3be59c2f562109b1acda6365e2c3d7a79e7e925b31ed020c77f"
+  }
+}
+
