@@ -10,7 +10,7 @@ public class AccountTest {
                 "\"address\": \"0x00998f1Aa20CB1D57da61F5dae2bF5F35BCfB42D41c7bb9E33D3D281a1cE3b25\",\n" +
                 "\"amount\": 500000000000000000000000000000,\n" +
                 "\"unit\": \"WEI\"\n" +
-                "}'"
+                "}'";
     }
 
 }
