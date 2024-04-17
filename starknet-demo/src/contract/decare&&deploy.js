@@ -7,8 +7,8 @@ async function main() {
     const provider = new RpcProvider({ nodeUrl: "http://127.0.0.1:5050/rpc" }); // only for starknet-devnet-rs
 
     //连接已经存在的账户
-    const privateKey0 = "0xb3e67c188778c4d47dd088c57643f196";
-    const address0 = "0x3da2afc1fb14a3ba060a18d1298fbeb8d70f1db93f6cd36c4b8d3628ad11f9";
+    const privateKey0 = "0x6292682f5db67f5d26d300b7abb2fb9a";
+    const address0 = "0x70518752ffca33798c93bc86c98f651a016694b3299f0d7a3d39e3a687a93e7";
     const account0 = new Account(provider, address0, privateKey0);
 
     // Declare & deploy Test contract in devnet
