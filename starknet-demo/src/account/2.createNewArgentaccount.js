@@ -7,11 +7,12 @@ async function main() {
     const provider = new RpcProvider({ nodeUrl: "http://127.0.0.1:5050/rpc" }); // only for starknet-devnet-rs
 
     //每次部署都要根据dev生成的账号替换该记录值
-    const privateKey0 = "0xc9ef4d92bc2979f15cca7deeb7b16963";
-    const accountAddress0 = "0x5f655fa03d3faa1bac8038b4d752b9951f3166f6c0e3f0ee4206b60d13cf5dc";
-
+    const privateKey0 = "0x4d881f4449dd7dcaa8f7a961c169394a";
+    const accountAddress0 = "0x408c57090bcd833841ad3613250c899001eb6384416949a6b5a9eb4ef2c317b";
+    //连接已经存在的账号
     const account0 = new Account(provider, accountAddress0, privateKey0);
 
+    //这个合约是什么意思？
     const accountAXsierra = json.parse(fs.readFileSync("../../compiledContracts/cairo243/ArgentXAccount031.sierra.json").toString("ascii"));
     const accountAXcasm = json.parse(fs.readFileSync("../../compiledContracts/cairo243/ArgentXAccount031.casm.json").toString("ascii"));
     const ch = hash.computeContractClassHash(accountAXsierra);

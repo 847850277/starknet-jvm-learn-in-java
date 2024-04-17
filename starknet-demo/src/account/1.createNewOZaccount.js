@@ -9,6 +9,7 @@ async function main() {
     // initialize existing predeployed account 0 of Devnet
     const privateKey0 = "0x71d7bb07b9a64f6f78ac4c816aff4da9";
     const accountAddress0 = "0x64b48806902a367c8598f4f95c305e8c1a1acba5f082d294a43793113115691";
+    //连接已经存在的账号
     const account0 = new Account(provider, accountAddress0, privateKey0);
     console.log("✅ Account 0 connected.\n");
 
