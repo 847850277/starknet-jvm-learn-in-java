@@ -3,6 +3,7 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/cario-contract/_02counter" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cario-contract/_03simple_storage" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/cario-contract/_1hello_scarb" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/cario-contract/_28erc20" vcs="Git" />
   </component>
