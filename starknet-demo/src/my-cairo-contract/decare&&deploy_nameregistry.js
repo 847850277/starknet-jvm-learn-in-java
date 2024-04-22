@@ -1,4 +1,4 @@
-const { RpcProvider, Account,stark,ec,json,CallData,hash,Contract} = require("starknet");
+const { RpcProvider, Account,stark,ec,json,CallData,hash,Contract,CairoCustomEnum} = require("starknet");
 const fs = require('fs')
 const axios = require('axios')
 
@@ -7,8 +7,8 @@ async function main() {
     const provider = new RpcProvider({ nodeUrl: "http://127.0.0.1:5050/rpc" }); // only for starknet-devnet-rs
 
     //连接已经存在的账户
-    const privateKey0 = "0x65d01c04157d0d9d6907a6b8bf553093";
-    const address0 = "0x333ee3b4cc818dcf88adab96b4cd26bd2a405ef507b0ba62aac5a7750486b95";
+    const privateKey0 = "0x56e429a8972a3d2294a66e35ca981259";
+    const address0 = "0x6f30e2cc69748b491cb51c39213b1a9cb7a918156fb8613607cee7e30afd037";
     const account0 = new Account(provider, address0, privateKey0);
 
     // Declare & deploy Test contract in devnet
@@ -49,12 +49,16 @@ async function main() {
     const setResponse4 = await myTestContract.get_name(setResponse3.address);
     console.log("setResponse4 =", setResponse4);
 
-    //TODO 用类库解析
-    const helloCallData = new CallData(myCallData.abi);
-    helloCallData.decodeParameters()
+    // use a custom Enum as input
+    const myCustomEnum = new CairoCustomEnum({
+        finite
+    });
 
+    console.log("my customer", myCustomEnum.activeVariant(), myCustomEnum.unwrap())
     //store_name函数
-    const setResponse5 = await myTestContract.store_name({name:"test",registration_type:1});
+    const param = {name:"test",registration_type:myCustomEnum.activeVariant()};
+    console.log("param",param);
+    const setResponse5 = await myTestContract.store_name(param);
     console.log("setResponse5 =", setResponse5);
 
     const setResponse6 = await myTestContract.get_owner();
