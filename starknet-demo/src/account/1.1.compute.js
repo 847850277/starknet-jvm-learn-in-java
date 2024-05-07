@@ -8,7 +8,8 @@ async function main() {
 
     // new Open Zeppelin account v0.5.1
     // Generate public and private key pair.
-    const privateKey = stark.randomAddress();
+    //const privateKey = stark.randomAddress();
+    const privateKey = "11121";
     console.log('New OZ account:\nprivateKey=', privateKey);
     const starkKeyPub = ec.starkCurve.getStarkKey(privateKey);
     console.log('publicKey=', starkKeyPub);

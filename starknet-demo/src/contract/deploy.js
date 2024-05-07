@@ -7,13 +7,13 @@ async function main() {
     const provider = new RpcProvider({ nodeUrl: "http://127.0.0.1:5050/rpc" }); // only for starknet-devnet-rs
 
     //连接已经存在的账户
-    const privateKey0 = "0xb3e67c188778c4d47dd088c57643f196";
-    const address0 = "0x3da2afc1fb14a3ba060a18d1298fbeb8d70f1db93f6cd36c4b8d3628ad11f9";
+    const privateKey0 = "0xcec0c3486223b569c0cb2c22b236f753";
+    const address0 = "0xb04631964dc2207e06f404c6136e1c51a66deaf08a675ef8a73d7341d97030";
     const account0 = new Account(provider, address0, privateKey0);
 
     // Deploy Test instance in devnet-rs
     // 这个合约地址从哪里来的？？？？
-    const testClassHash = "0xf568733c46280a8c36992fc53808061a877e75dff67b8d2367409a4c9896ce";
+    const testClassHash = "0x4c9e06b73ffb0bb0e00a7ef039b1773e08be94e0ff7244a37656f9ba2c5aa0e";
     const testSierra = json.parse(fs.readFileSync("../../compiledContracts/cairo240/counter.sierra.json").toString("ascii"));
     //estimate fee
     const myCallData = new CallData(testSierra.abi);

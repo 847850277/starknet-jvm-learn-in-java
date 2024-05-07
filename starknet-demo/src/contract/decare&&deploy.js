@@ -2,13 +2,14 @@ const { RpcProvider, Account,stark,ec,json,CallData,hash,Contract} = require("st
 const fs = require('fs')
 const axios = require('axios')
 
+
 async function main() {
 
     const provider = new RpcProvider({ nodeUrl: "http://127.0.0.1:5050/rpc" }); // only for starknet-devnet-rs
 
     //连接已经存在的账户
-    const privateKey0 = "0x826f1d71279c3a8e6e4d64c0c94df4ff";
-    const address0 = "0x7e00afc528b590e8998d2c8a868d3b44201c6ceb58b89f9590c113b1c4660e6";
+    const privateKey0 = "0xd7b45cc87a8151d158f4c384645a89d2";
+    const address0 = "0x6cb4beca0ff7168dc055aaa747d4154594fbc274f58c4206926a33257850967";
     const account0 = new Account(provider, address0, privateKey0);
 
     // Declare & deploy Test contract in devnet
